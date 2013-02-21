@@ -12,6 +12,11 @@
 
 {% endblock %}
 
+{% block json %}
+<script type="text/javascript">
+	var data = {{ json_data|safe }};
+</script>
+{% endblock %}
 
 {% block content %}
 {% with glasovanje=objects.0.glasovanje %}
@@ -25,6 +30,8 @@
 	<br />
 	<a href="{{ glasovanje.url }}">Ogled glasovanja na strani Državnega zbora</a>
 </p>
+
+<div class="votesummary-graph"></div>
 
 <p>
 	<h2>Povzetek</h2>

@@ -292,13 +292,13 @@ class Glasovanje(models.Model):
 				data_sorted[key]['majority'] = data_sorted[key][majority]
 				data_sorted[key]['minority'] = data_sorted[key][minority]
 			
-			data_sorted['Skupaj'] = {
+			data_sorted['skupaj'] = {
 						'stranka': None,
 						'majority': majority_voted,
 						'minority': minority_voted,
 						'abstained': total_abstained,
 						'absent': total_absent,
-						'count': 0.0,
+						'count': majority_voted + minority_voted,
 						'present': (90 - total_absent),
 						'percent': ((90.0 - total_absent) / 90.0 * 100.0),
 					}

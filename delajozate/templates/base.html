@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="/static/css/screen.css"/>
 		{% block head %}{% endblock %}
 		{% block opengraph %}{% endblock %}
+		{% block json %}{% endblock %}
 	</head>
 	<body>
 		<div class="site">
@@ -42,6 +43,8 @@
 				</p>
 			</footer>
 		</div>
+		<script type='text/javascript' defer src="/static/d3.v3.min.js"></script>
+		<script type='text/javascript' defer src="/static/graphs.js"></script>
 		{% include "google_analytics.html" %}
 	</body>
 </html>

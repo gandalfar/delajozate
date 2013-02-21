@@ -39,7 +39,15 @@ def glasovanje(request, datum, ura=None, pk=None):
         raise Http404
     
     glasovi = glasovi.select_related('oseba')
+
+    voting_result = []
+    summary_skupaj = glasovi[0].glasovanje.summary['votes']['skupaj']
+    for key in summary_skupaj:
+        voting_result.append({'label': key, 'count':summary_skupaj[key]})
+
+    json_data = {'voting_result': voting_result}
     context = {
         'objects': glasovi,
+        'json_data': json.dumps(json_data)
     }
     return render(request, 'glasovanje.html', context)
