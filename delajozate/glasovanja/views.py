@@ -1,10 +1,11 @@
-# Create your views here.
+#-*- coding: utf-8 -*-
 
 import datetime
 import json
+from pprint import pprint
 
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from magnetogrami.models import Glasovanje, Glas
@@ -25,7 +26,7 @@ def index(request):
         }
     return render(request, 'glasovanja.html', context)
 
-def glasovanje(request, datum, ura=None, pk=None):
+def glasovanje(request, datum, ura=None, pk=None, ajax=False):
     datum = datetime.datetime.strptime(datum, '%Y-%m-%d').date()
     
     if ura is not None:
@@ -40,14 +41,30 @@ def glasovanje(request, datum, ura=None, pk=None):
     
     glasovi = glasovi.select_related('oseba')
 
-    voting_result = []
-    summary_skupaj = glasovi[0].glasovanje.summary['votes']['skupaj']
-    for key in summary_skupaj:
-        voting_result.append({'label': key, 'count':summary_skupaj[key]})
+    if ajax:
+        voting_result = []
+        glasovanje = glasovi[0].glasovanje
+        summary_skupaj = glasovanje.summary['votes']['skupaj']
 
-    json_data = {'voting_result': voting_result}
-    context = {
-        'objects': glasovi,
-        'json_data': json.dumps(json_data)
-    }
-    return render(request, 'glasovanje.html', context)
+        if glasovanje.summary['majority'] == 'za':
+            data = {
+                'za': summary_skupaj['majority'],
+                'proti': summary_skupaj['minority'],
+            }
+        else:
+            data = {
+                'za': summary_skupaj['minority'],
+                'proti': summary_skupaj['majority']
+            }
+        data[u'vzdržani'] = summary_skupaj['abstained']
+        data[u'odsotni'] = summary_skupaj['absent']
+
+        data_list = [{'label': key, 'count': data[key]} for key in data]
+
+        json_data = {'summary':data_list}
+        return HttpResponse(json.dumps(json_data), mimetype="application/json")
+    else:
+        context = {
+            'objects': glasovi,
+        }
+        return render(request, 'glasovanje.html', context)

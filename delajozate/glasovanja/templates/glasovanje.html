@@ -12,17 +12,11 @@
 
 {% endblock %}
 
-{% block json %}
-<script type="text/javascript">
-	var data = {{ json_data|safe }};
-</script>
-{% endblock %}
-
 {% block content %}
 {% with glasovanje=objects.0.glasovanje %}
 
 <h1>{{ glasovanje }}</h1>
-
+<div class="votesummary-graph"></div>
 <p>
 	Glasovanje je potekalo v {{ glasovanje.datum|date:"l, j. E Y" }}{% if glasovanje.ura %} ob {{ glasovanje.ura }}{% endif %}.
 	<br />
@@ -31,7 +25,7 @@
 	<a href="{{ glasovanje.url }}">Ogled glasovanja na strani Državnega zbora</a>
 </p>
 
-<div class="votesummary-graph"></div>
+
 
 <p>
 	<h2>Povzetek</h2>
