@@ -44,20 +44,20 @@ h6 small {
 h1 {
   /* 32px; 10px 20px */
   font-size: 2em;
-  margin: .3125em 0 .625em;
+  margin: 0.3125em 0 0.625em;
 }
 
 h2 {
   /* 24px; 10px 20px */
   font-size: 1.5em;
-  margin: .41666667em 0 .83333333em;
+  margin: 0.41667em 0 0.83333em;
 }
 
 h3 {
   /* 20px; 10px */
   font-size: 1.25em;
   line-height: 1;
-  margin: .5em 0;
+  margin: 0.5em 0;
 }
 
 h1, h2, h3 {
@@ -67,7 +67,7 @@ h1, h2, h3 {
 h4 {
   /* 16px; 10px */
   font-size: 1em;
-  margin: .625em 0;
+  margin: 0.625em 0;
 }
 
 h5,
@@ -75,7 +75,7 @@ h6 {
   /* 14px; 10px */
   font-size: .875em;
   text-transform: uppercase;
-  margin: .71428571em 0;
+  margin: 0.71429em 0;
 }
 
 hgroup *:not(:first-child) {
@@ -138,7 +138,7 @@ table {
 td,
 th {
   padding: 5px 10px 5px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #cccccc;
   line-height: 1.5;
   vertical-align: top;
   text-align: left;
@@ -237,7 +237,7 @@ section.body aside {
 }
 
 .poslanci {
-  padding: .625em 0;
+  padding: 0.625em 0;
   overflow: hidden;
   clear: both;
 }
@@ -251,7 +251,7 @@ ol.poslanci {
   list-style: none;
   display: inline-block;
   width: 30%;
-  padding: .625em 3% .625em 0;
+  padding: 0.625em 3% 0.625em 0;
   margin: 0;
   overflow: hidden;
 }
@@ -360,7 +360,7 @@ nav > ol > li {
 nav > ol > li > a {
   /* 10px */
   display: block;
-  padding: 0 .625em;
+  padding: 0 0.625em;
 }
 
 nav > ol > li > a:hover {
@@ -465,7 +465,7 @@ footer a {
   }
 
   .vote-summary tr {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #cccccc;
   }
 
   /* Behave like a row */
@@ -518,7 +518,7 @@ footer a {
 }
 
 .btn {
-  padding: .25em 2em;
+  padding: 0.25em 2em;
 }
 
 /*
@@ -616,7 +616,7 @@ footer a {
 
 /* img */
 .card .img {
-  border: 1px solid #999;
+  border: 1px solid #999999;
   overflow: hidden;
 }
 
@@ -628,7 +628,7 @@ footer a {
 
 /* card stats */
 .card dl {
-  margin: .625em 0;
+  margin: 0.625em 0;
 }
 
 .card dt {
@@ -636,7 +636,7 @@ footer a {
 }
 
 .card dd {
-  border-bottom: 1px dotted #666;
+  border-bottom: 1px dotted #666666;
   padding: 0;
   margin: 0;
   text-align: right;
@@ -709,7 +709,7 @@ footer a {
   clear: left;
   width: 100%;
   padding: 1em 0;
-  border-bottom: 1px dotted #ddd;
+  border-bottom: 1px dotted #dddddd;
 }
 
 .quote-link {
@@ -779,7 +779,7 @@ footer a {
   }
 
   .votes-table tr {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #cccccc;
   }
 
   /* Behave like a row */
@@ -812,4 +812,11 @@ footer a {
   .votes-table td:nth-of-type(3):before {
     content: "Glasoval";
   }
+}
+
+.vote-summary-graph {
+    float: right; 
+    width: 200px; 
+    height: 200px;
+    margin: 10px;
 }

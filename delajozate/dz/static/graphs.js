@@ -10,7 +10,7 @@ function d3_glasovanje_piechart(url, selector, width, height) {
     d3.json(url, function(json){
         data = json.summary;
 
-        var svg = d3.select('.votesummary-graph')
+        var svg = d3.select(selector)
                     .append('svg:svg')
                     .data([data])
                         .attr("width", width)
@@ -44,12 +44,32 @@ function d3_glasovanje_piechart(url, selector, width, height) {
                         })
                         .attr("text-anchor", "middle")
                         .text(function(d, i) {
-                            return data[i].label
+                            if (data[i].count > 3) { return data[i].count }
+                            return '';
                         });
+
+        var legend = d3.select(selector).append("svg")
+              .attr("class", "legend")
+              .attr("width", r * 2)
+              .attr("height", r * 2)
+            .selectAll("g")
+              .data(color.domain().slice().reverse())
+            .enter().append("g")
+              .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+            legend.append("rect")
+              .attr("width", 18)
+              .attr("height", 18)
+              .style("fill", color);
+
+            legend.append("text")
+              .attr("x", 24)
+              .attr("y", 9)
+              .attr("dy", ".35em")
+              .text(function(d,i) { return data[i].label; });
     });
 }
 
-if (d3.select('.votesummary-graph').length > 0) {
-    var el = d3.select('.votesummary-graph')
-    d3_glasovanje_piechart(document.location.href+'ajax/', '.votesummary-graph', 200, 200);
+if (d3.select('.vote-summary-graph').length > 0) {
+    d3_glasovanje_piechart(document.location.href+'ajax/', '.vote-summary-graph', 200, 200);
 }
