@@ -2,9 +2,10 @@
 {% load highlight %}
 
 {% block content %}
+<div class="content">
     <h2>Iskanje</h2>
 
-    <form method="get" action=".">
+    <form method="get" action="." role="search">
         <fieldset>
             <div>
                 {{ form.q.errors }}
@@ -50,5 +51,5 @@
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
     </form>
-<br />
+</div>
 {% endblock %}
